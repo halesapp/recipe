@@ -13,14 +13,14 @@ const Cookbook = (function () {
         if (!recipeList.includes(selection)) {
             return;
         }
-        fetch(`/recipe/database/${recipeDB[selection]}.html`)
+        fetch(`/recipe/static/recipe-fragments/${recipeDB[selection]}.html`)
             .then(response => {return response.text()})
             .then(html => {recipeDiv.innerHTML = html})
             .catch(error => {console.log(error)})
     }
 
     const init = function () {
-        fetch("/recipe/recipes.json")
+        fetch("/recipe/static/json/recipes.json")
             .then(response => {return response.json()})
             .then(response => {
                 recipeDB = response;
@@ -40,3 +40,4 @@ const Cookbook = (function () {
         init
     }
 }())
+Cookbook.init()
